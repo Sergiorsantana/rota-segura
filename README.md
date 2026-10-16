@@ -22,7 +22,7 @@ No exemplo acima a Escada A do 1º andar pegou fogo. Os alunos da Sala 201 deixa
 ## Instalação
 
 ```bash
-git clone https://github.com/SEU_USUARIO/rota-segura.git
+git clone https://github.com/Sergiorsantana/rota-segura.git
 cd rota-segura
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev,api]"
