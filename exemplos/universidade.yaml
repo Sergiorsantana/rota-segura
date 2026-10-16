@@ -1,0 +1,82 @@
+nome: Bloco B · Universidade Exemplo
+tipo: universidade
+descricao: Bloco de salas com dois pavimentos, duas escadas e área de refúgio no 1º andar.
+distancia_maxima: 45   # metros até a saída mais próxima
+
+andares:
+  - {id: T, nome: Térreo, elevacao: 0}
+  - {id: P1, nome: 1º andar, elevacao: 4}
+
+nos:
+  # ---------------- Térreo
+  - {id: cantina,       andar: T, tipo: sala, x: 5,  y: 1, nome: Cantina, ocupacao: 80}
+  - {id: biblioteca,    andar: T, tipo: sala, x: 17, y: 1, nome: Biblioteca, ocupacao: 60}
+  - {id: auditorio,     andar: T, tipo: sala, x: 32, y: 0, nome: Auditório, ocupacao: 150}
+  - {id: s101,          andar: T, tipo: sala, x: 5,  y: 9, nome: Sala 101, ocupacao: 40}
+  - {id: s102,          andar: T, tipo: sala, x: 17, y: 9, nome: Sala 102, ocupacao: 40}
+  - {id: lab103,        andar: T, tipo: sala, x: 25, y: 9, nome: Lab 103, ocupacao: 30}
+  - {id: cT1,           andar: T, tipo: corredor, x: 5,  y: 5}
+  - {id: cT2,           andar: T, tipo: corredor, x: 13, y: 5}
+  - {id: cT3,           andar: T, tipo: corredor, x: 25, y: 5}
+  - {id: cT4,           andar: T, tipo: corredor, x: 35, y: 5}
+  - {id: escA_T,        andar: T, tipo: escada, x: 11, y: 8, nome: Escada A}
+  - {id: escB_T,        andar: T, tipo: escada, x: 35, y: 8, nome: Escada B}
+  - {id: elev_T,        andar: T, tipo: elevador, x: 20, y: 7, nome: Elevador}
+  - {id: saida_oeste,   andar: T, tipo: saida, x: 0,  y: 5, nome: Saída Oeste}
+  - {id: saida_leste,   andar: T, tipo: saida, x: 40, y: 5, nome: Saída Leste}
+  - {id: saida_aud,     andar: T, tipo: saida, x: 38, y: 0, nome: Saída Auditório}
+
+  # ---------------- 1º andar
+  - {id: s201,          andar: P1, tipo: sala, x: 5,  y: 9, nome: Sala 201, ocupacao: 45}
+  - {id: s202,          andar: P1, tipo: sala, x: 17, y: 9, nome: Sala 202, ocupacao: 45}
+  - {id: lab203,        andar: P1, tipo: sala, x: 25, y: 9, nome: Lab 203, ocupacao: 30}
+  - {id: s204,          andar: P1, tipo: sala, x: 5,  y: 1, nome: Sala 204, ocupacao: 45}
+  - {id: s205,          andar: P1, tipo: sala, x: 25, y: 1, nome: Sala 205, ocupacao: 45}
+  - {id: c11,           andar: P1, tipo: corredor, x: 5,  y: 5}
+  - {id: c12,           andar: P1, tipo: corredor, x: 13, y: 5}
+  - {id: c13,           andar: P1, tipo: corredor, x: 25, y: 5}
+  - {id: c14,           andar: P1, tipo: corredor, x: 35, y: 5}
+  - {id: escA_1,        andar: P1, tipo: escada, x: 11, y: 8, nome: Escada A}
+  - {id: escB_1,        andar: P1, tipo: escada, x: 35, y: 8, nome: Escada B}
+  - {id: elev_1,        andar: P1, tipo: elevador, x: 20, y: 7, nome: Elevador}
+  - {id: refugio_1,     andar: P1, tipo: area_refugio, x: 40, y: 9.5, nome: Área de refúgio}
+
+conexoes:
+  # Térreo: corredor principal
+  - {de: saida_oeste, para: cT1, largura: 2.2, tipo: porta_corta_fogo}
+  - {de: cT1, para: cT2, largura: 2.0}
+  - {de: cT2, para: cT3, largura: 2.0}
+  - {de: cT3, para: cT4, largura: 2.0}
+  - {de: cT4, para: saida_leste, largura: 2.2, tipo: porta_corta_fogo}
+  # Térreo: portas das salas
+  - {de: cantina, para: cT1, largura: 1.6}
+  - {de: cantina, para: saida_oeste, largura: 1.2}
+  - {de: biblioteca, para: cT2, largura: 1.2}
+  - {de: auditorio, para: cT4, largura: 1.6}
+  - {de: auditorio, para: saida_aud, largura: 2.4}
+  - {de: s101, para: cT1, largura: 0.9}
+  - {de: s102, para: cT2, largura: 0.9}
+  - {de: lab103, para: cT3, largura: 0.9}
+  - {de: escA_T, para: cT2, largura: 1.5}
+  - {de: escB_T, para: cT4, largura: 1.5}
+  - {de: elev_T, para: cT3, largura: 1.1}
+
+  # 1º andar
+  - {de: c11, para: c12, largura: 2.0}
+  - {de: c12, para: c13, largura: 2.0}
+  - {de: c13, para: c14, largura: 2.0}
+  - {de: s201, para: c11, largura: 0.9}
+  - {de: s202, para: c12, largura: 0.9}
+  - {de: lab203, para: c13, largura: 0.9}
+  - {de: s204, para: c11, largura: 0.9}
+  - {de: s205, para: c13, largura: 0.9}
+  - {de: escA_1, para: c12, largura: 1.5}
+  - {de: escB_1, para: c14, largura: 1.5}
+  - {de: elev_1, para: c13, largura: 1.1}
+  - {de: refugio_1, para: c14, largura: 1.5, tipo: porta_corta_fogo}
+  - {de: refugio_1, para: escB_1, largura: 1.5}
+
+  # Ligações verticais (distância = comprimento percorrido na escada)
+  - {de: escA_1, para: escA_T, largura: 1.2, tipo: escada, distancia: 9}
+  - {de: escB_1, para: escB_T, largura: 1.2, tipo: escada, distancia: 9}
+  - {de: elev_1, para: elev_T, largura: 1.1, distancia: 4}

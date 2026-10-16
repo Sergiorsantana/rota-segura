@@ -1,0 +1,50 @@
+nome: Terminal de Passageiros · Aeroporto Exemplo
+tipo: aeroporto
+descricao: Terminal térreo com check-in, área de segurança, sala de embarque e quatro saídas.
+distancia_maxima: 75   # terminais costumam ter sprinklers, o que permite percursos maiores
+
+andares:
+  - {id: T, nome: Terminal, elevacao: 0}
+
+nos:
+  - {id: checkin_a,     andar: T, tipo: sala, x: 10,  y: 30, nome: Check-in A, ocupacao: 220}
+  - {id: checkin_b,     andar: T, tipo: sala, x: 50,  y: 30, nome: Check-in B, ocupacao: 220}
+  - {id: praca_alim,    andar: T, tipo: sala, x: 90,  y: 30, nome: Praça de alimentação, ocupacao: 300}
+  - {id: raio_x,        andar: T, tipo: sala, x: 50,  y: 15, nome: Inspeção de segurança, ocupacao: 90}
+  - {id: embarque_1,    andar: T, tipo: sala, x: 15,  y: 0,  nome: Portões 1-4, ocupacao: 350}
+  - {id: embarque_2,    andar: T, tipo: sala, x: 85,  y: 0,  nome: Portões 5-8, ocupacao: 350}
+  - {id: duty_free,     andar: T, tipo: sala, x: 50,  y: 4,  nome: Duty free, ocupacao: 80}
+  - {id: desembarque,   andar: T, tipo: sala, x: 110, y: 15, nome: Desembarque, ocupacao: 180}
+  - {id: hall1,         andar: T, tipo: corredor, x: 10,  y: 22}
+  - {id: hall2,         andar: T, tipo: corredor, x: 50,  y: 22}
+  - {id: hall3,         andar: T, tipo: corredor, x: 90,  y: 22}
+  - {id: pier1,         andar: T, tipo: corredor, x: 30,  y: 8}
+  - {id: pier2,         andar: T, tipo: corredor, x: 50,  y: 8}
+  - {id: pier3,         andar: T, tipo: corredor, x: 70,  y: 8}
+  - {id: meio_fio,      andar: T, tipo: saida, x: 50,  y: 40, nome: Meio-fio (embarque)}
+  - {id: saida_oeste,   andar: T, tipo: saida, x: -6,  y: 22, nome: Saída Oeste}
+  - {id: saida_leste,   andar: T, tipo: saida, x: 120, y: 26, nome: Saída Leste}
+  - {id: patio,         andar: T, tipo: saida, x: 50,  y: -8, nome: Saída para o pátio}
+
+conexoes:
+  - {de: hall1, para: hall2, largura: 8}
+  - {de: hall2, para: hall3, largura: 8}
+  - {de: hall1, para: saida_oeste, largura: 3.6}
+  - {de: hall2, para: meio_fio, largura: 6.0}
+  - {de: hall3, para: saida_leste, largura: 3.6}
+  - {de: checkin_a, para: hall1, largura: 6}
+  - {de: checkin_b, para: hall2, largura: 6}
+  - {de: checkin_b, para: meio_fio, largura: 4}
+  - {de: praca_alim, para: hall3, largura: 5}
+  - {de: desembarque, para: hall3, largura: 4}
+  - {de: desembarque, para: saida_leste, largura: 3.0}
+  - {de: hall2, para: raio_x, largura: 5}
+  - {de: raio_x, para: pier2, largura: 4}
+  - {de: pier1, para: pier2, largura: 6}
+  - {de: pier2, para: pier3, largura: 6}
+  - {de: embarque_1, para: pier1, largura: 5}
+  - {de: embarque_2, para: pier3, largura: 5}
+  - {de: duty_free, para: pier2, largura: 4}
+  - {de: pier2, para: patio, largura: 2.4, tipo: porta_corta_fogo}
+  - {de: embarque_1, para: patio, largura: 1.8, tipo: porta_corta_fogo, distancia: 40}
+  - {de: embarque_2, para: patio, largura: 1.8, tipo: porta_corta_fogo, distancia: 40}

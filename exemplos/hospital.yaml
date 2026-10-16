@@ -1,0 +1,75 @@
+nome: Hospital Exemplo · Ala Norte
+tipo: hospital
+descricao: >
+  Dois pavimentos. A UTI e as enfermarias ficam no 1º andar, com rampa
+  acessível e compartimento de refúgio para evacuação horizontal progressiva.
+distancia_maxima: 60   # edificação com chuveiros automáticos (sprinklers)
+
+andares:
+  - {id: T, nome: Térreo, elevacao: 0}
+  - {id: P1, nome: 1º andar · Internação, elevacao: 4.5}
+
+nos:
+  # ---------------- Térreo
+  - {id: recepcao,      andar: T, tipo: sala, x: 4,  y: 2,  nome: Recepção, ocupacao: 50}
+  - {id: pronto_socorro, andar: T, tipo: sala, x: 14, y: 0, nome: Pronto-socorro, ocupacao: 40}
+  - {id: raio_x,        andar: T, tipo: sala, x: 24, y: 0,  nome: Raio-X, ocupacao: 8}
+  - {id: farmacia,      andar: T, tipo: sala, x: 34, y: 0,  nome: Farmácia, ocupacao: 6}
+  - {id: laboratorio,   andar: T, tipo: sala, x: 24, y: 10, nome: Laboratório, ocupacao: 15}
+  - {id: hT1,           andar: T, tipo: corredor, x: 4,  y: 5}
+  - {id: hT2,           andar: T, tipo: corredor, x: 14, y: 5}
+  - {id: hT3,           andar: T, tipo: corredor, x: 24, y: 5}
+  - {id: hT4,           andar: T, tipo: corredor, x: 34, y: 5}
+  - {id: esc_T,         andar: T, tipo: escada, x: 34, y: 9, nome: Escada}
+  - {id: rampa_T,       andar: T, tipo: corredor, x: 8, y: 9, nome: Rampa}
+  - {id: entrada,       andar: T, tipo: saida, x: 0,  y: 5, nome: Entrada principal}
+  - {id: saida_ambul,   andar: T, tipo: saida, x: 14, y: -4, nome: Saída ambulâncias}
+  - {id: saida_servico, andar: T, tipo: saida, x: 40, y: 5, nome: Saída de serviço}
+
+  # ---------------- 1º andar
+  - {id: uti,           andar: P1, tipo: sala, x: 30, y: 10, nome: UTI, ocupacao: 18}
+  - {id: enf_a,         andar: P1, tipo: sala, x: 4,  y: 10, nome: Enfermaria A, ocupacao: 24}
+  - {id: enf_b,         andar: P1, tipo: sala, x: 16, y: 10, nome: Enfermaria B, ocupacao: 24}
+  - {id: centro_cir,    andar: P1, tipo: sala, x: 24, y: 0,  nome: Centro cirúrgico, ocupacao: 12}
+  - {id: posto_enf,     andar: P1, tipo: sala, x: 12, y: 0,  nome: Posto de enfermagem, ocupacao: 6}
+  - {id: h11,           andar: P1, tipo: corredor, x: 4,  y: 5}
+  - {id: h12,           andar: P1, tipo: corredor, x: 14, y: 5}
+  - {id: h13,           andar: P1, tipo: corredor, x: 24, y: 5}
+  - {id: h14,           andar: P1, tipo: corredor, x: 34, y: 5}
+  - {id: esc_1,         andar: P1, tipo: escada, x: 34, y: 9, nome: Escada}
+  - {id: rampa_1,       andar: P1, tipo: corredor, x: 8, y: 9, nome: Rampa}
+  - {id: compartimento, andar: P1, tipo: area_refugio, x: 38, y: 5, nome: Compartimento seguro}
+
+conexoes:
+  - {de: entrada, para: hT1, largura: 3.0}
+  - {de: hT1, para: hT2, largura: 2.4}
+  - {de: hT2, para: hT3, largura: 2.4}
+  - {de: hT3, para: hT4, largura: 2.4}
+  - {de: hT4, para: saida_servico, largura: 1.6, tipo: porta_corta_fogo}
+  - {de: recepcao, para: hT1, largura: 2.0}
+  - {de: recepcao, para: entrada, largura: 2.0}
+  - {de: pronto_socorro, para: hT2, largura: 1.8}
+  - {de: pronto_socorro, para: saida_ambul, largura: 2.4}
+  - {de: raio_x, para: hT3, largura: 1.2}
+  - {de: farmacia, para: hT4, largura: 0.9}
+  - {de: laboratorio, para: hT3, largura: 1.0}
+  - {de: esc_T, para: hT4, largura: 1.5}
+  - {de: rampa_T, para: hT1, largura: 1.8}
+
+  - {de: h11, para: h12, largura: 2.4}
+  - {de: h12, para: h13, largura: 2.4}
+  - {de: h13, para: h14, largura: 2.4, tipo: porta_corta_fogo}
+  - {de: h14, para: compartimento, largura: 2.0, tipo: porta_corta_fogo}
+  - {de: compartimento, para: esc_1, largura: 1.5}
+  - {de: uti, para: h13, largura: 1.6}
+  - {de: uti, para: h14, largura: 1.6}
+  - {de: enf_a, para: h11, largura: 1.2}
+  - {de: enf_b, para: h12, largura: 1.2}
+  - {de: centro_cir, para: h13, largura: 1.6}
+  - {de: posto_enf, para: h12, largura: 1.0}
+  - {de: esc_1, para: h14, largura: 1.5}
+  - {de: rampa_1, para: h11, largura: 1.8}
+
+  # Verticais
+  - {de: esc_1, para: esc_T, largura: 1.5, tipo: escada, distancia: 10}
+  - {de: rampa_1, para: rampa_T, largura: 1.8, tipo: rampa, distancia: 38}
